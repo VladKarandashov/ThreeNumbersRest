@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class NoteController {
     private final NoteService noteService;
@@ -35,6 +37,15 @@ public class NoteController {
 
         return information != null
                 ? new ResponseEntity<>(information, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping(value = "/notes")
+    public ResponseEntity<List<Note>> readAll() {
+        final List<Note> notes = noteService.readAll();
+
+        return notes != null &&  !notes.isEmpty()
+                ? new ResponseEntity<>(notes, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

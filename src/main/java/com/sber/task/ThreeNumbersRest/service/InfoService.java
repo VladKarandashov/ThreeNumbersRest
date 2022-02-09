@@ -26,7 +26,7 @@ public class InfoService {
             double sumGroup = 0;
             for (Long numberMember : noteService.readMembers(numberGroup)){
                 double sum = 0;
-                for (Note note : noteService.read(numberGroup, numberGroup)){
+                for (Note note : noteService.read(numberGroup, numberMember)){
                     sum += note.getItem();
                 }
                 Member member = new Member(Long.toString(numberMember), Double.toString(sum));
