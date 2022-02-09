@@ -1,9 +1,23 @@
 package com.sber.task.ThreeNumbersRest.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "NOTES")
 public class Note {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID", nullable = false)
     private int id;
+
+    @Column(name = "MEMBER", nullable = false)
     private Long member;
+
+    @Column(name = "section", nullable = false)
     private Long group;
+
+    @Column(name = "item", nullable = false)
     private Double item;
 
     public Integer getId() {
@@ -35,6 +49,15 @@ public class Note {
     }
 
     public void setItem(Double item) {
+        this.item = item;
+    }
+
+    public Note() {
+    }
+
+    public Note(Long member, Long group, Double item) {
+        this.member = member;
+        this.group = group;
         this.item = item;
     }
 }
